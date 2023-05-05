@@ -18,7 +18,7 @@ namespace ModelModule.View
     /// <summary>
     /// Логика взаимодействия для UserControlOpenDB.xaml
     /// </summary>
-    public partial class UserControlOpenDB : Page
+    public partial class UserControlOpenDB : UserControl
     {
         public UserControlOpenDB()
         {

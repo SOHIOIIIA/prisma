@@ -1,7 +1,9 @@
 using ModelModule.Model;
+using ModelModule.View;
 using Prism.Ioc;
 using Prism.Modularity;
 using Prism.Regions;
+using Prisma.Core;
 using Prisma.Core.Abstractions;
 
 namespace ModelModule
@@ -23,9 +25,9 @@ namespace ModelModule
 
         public void OnInitialized(IContainerProvider containerProvider)
         {
-            //_regionManager
-            //    .RegisterViewWithRegion(RegionsName.MainRegion, typeof(View))
-            //    .RegisterViewWithRegion(RegionsName.RightRegion, typeof(View));
+            _regionManager
+                .RegisterViewWithRegion(RegionsName.MainRegion, typeof(UserControlOpenDB));
+            //.RegisterViewWithRegion(RegionsName.RightRegion, typeof(View2));
         }
     }
 }
