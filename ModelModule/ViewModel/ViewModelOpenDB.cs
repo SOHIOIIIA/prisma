@@ -11,6 +11,7 @@ using System.Threading.Tasks;
 using System.Windows.Input;
 using Prism.Regions;
 using Prisma.Core.Abstractions;
+using Prism.Mvvm;
 
 namespace ModelModule.ViewModel
 {
