@@ -4,6 +4,7 @@ using Prism.Ioc;
 using Prism.Modularity;
 using Prism.Regions;
 using Prism.Unity;
+using ModelModule;
 
 namespace Prism.Shell
 {
@@ -21,7 +22,7 @@ namespace Prism.Shell
 
         protected override void ConfigureModuleCatalog(IModuleCatalog moduleCatalog)
         {
-            //moduleCatalog.AddModule<ModelModul>();
+            moduleCatalog.AddModule<ModelModule.ModelModule>();
         }
     }
 }
