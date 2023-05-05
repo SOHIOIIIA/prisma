@@ -1,10 +1,16 @@
 ﻿using Prisma.Core.Abstractions;
+using Prism.Regions;
 using Prism.Mvvm;
 
 namespace ModelModule.Components
 {
     public class ProjectNavigation: BindableBase, INavigation
     {
+        private enum View
+        {
+            
+        }
+        private readonly IRegionManager _regionManager;
         private bool _canNext;
         private bool _canPrevious;
 
@@ -29,5 +35,9 @@ namespace ModelModule.Components
             
         }
 
+        public ProjectNavigation(IRegionManager regionManager)
+        {
+            _regionManager = regionManager;
+        }
     }
 }
