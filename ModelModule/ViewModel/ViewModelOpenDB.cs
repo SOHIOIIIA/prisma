@@ -12,12 +12,13 @@ using System.Windows.Input;
 using Prism.Regions;
 using Prisma.Core.Abstractions;
 using Prism.Mvvm;
+using Prism.Commands;
 
 namespace ModelModule.ViewModel
 {
-    public class ViewModelOpenDB
+    public class ViewModelOpenDB: BindableBase
     {
-        private readonly IRegionManager _regionManager;
+        private readonly IProjectPage _projectPage;
 
         private DataTable _databases = new DataTable();
         public DataTable Databases
@@ -32,9 +33,9 @@ namespace ModelModule.ViewModel
             }
         }
 
-        public ViewModelOpenDB(IRegionManager regionManager)
+        public ViewModelOpenDB(IProjectPage projectPage)
         {
-            _regionManager = regionManager;
+            _projectPage = projectPage;
 
         }
 
@@ -85,9 +86,8 @@ namespace ModelModule.ViewModel
         IExcelDataReader edr;
 
 
-
-        private RelayCommand openExcel;
-        public ICommand OpenExcel => openExcel ??= new RelayCommand(PerformOpenExcel);
+        private DelegateCommand openEcxel;
+        public ICommand OpenExcel => openEcxel ??= new DelegateCommand(PerformOpenExcel);
 
         private void PerformOpenExcel()
         {
@@ -97,8 +97,7 @@ namespace ModelModule.ViewModel
             if (openFileDialog.ShowDialog() != true)
                 return;
             FilePath = openFileDialog.FileName;
-            var model = ProjectModel.Instance;
-            model.DataBasepath = FilePath;
+            _projectPage.DataBasePath = FilePath;
             var task = Task.Run(() => ReadExcel());
             //ReadExcelData(filename);
             //Workbook workbook = new Workbook(FilePath);
