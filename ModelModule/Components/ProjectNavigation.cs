@@ -8,7 +8,10 @@ namespace ModelModule.Components
     {
         private enum View
         {
-            
+            UserControlOpenDB,
+            UserControlOpenScript,
+            UserControlOutputPath,
+            UserControlPrintPyScr
         }
         private readonly IRegionManager _regionManager;
         private bool _canNext;
@@ -27,7 +30,7 @@ namespace ModelModule.Components
 
         public void NextPage(string page)
         {
-            
+            //_regionManager.
         }
 
         public void PreviousPage(string page)
