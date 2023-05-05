@@ -21,7 +21,7 @@ namespace Prism.Shell
 
         protected override void ConfigureModuleCatalog(IModuleCatalog moduleCatalog)
         {
-            //moduleCatalog.AddModule<ModelModule>();
+            //moduleCatalog.AddModule<ModelModul>();
         }
     }
 }
