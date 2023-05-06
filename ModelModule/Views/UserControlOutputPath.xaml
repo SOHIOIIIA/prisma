@@ -26,7 +26,8 @@
                 <Button Grid.Column="0" Content="Запустить скрипт" Command="{Binding StartCommand}">
 
                 </Button>
-                <Button Grid.Column="1" Content="Прервать выполнение скрипта" Command="{Binding StopCommand}"/>
+                <Button Grid.Column="1" Content="Прерваdть выполнение скрипта" Command="{Binding StopCommand}"/>
             </Grid>
+        </Grid>
     </Border>
 </UserControl>

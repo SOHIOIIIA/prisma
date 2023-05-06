@@ -1,5 +1,5 @@
 using ModelModule.Model;
-using ModelModule.View;
+using ModelModule.Components;
 using ModelModule.Views;
 using Prism.Ioc;
 using Prism.Modularity;

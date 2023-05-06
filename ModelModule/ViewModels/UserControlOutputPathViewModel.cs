@@ -43,8 +43,7 @@ namespace ModelModule.ViewModels
         public UserControlOutputPathViewModel(IProjectPage projectPage)
         {
             StartCommand = new DelegateCommand(StartExamination);
-            StopCommand = new DelegateCommand(StopExamination, CanStop);
-            this.WhenPropertyChanged(x => x.Stop, OnStop);
+            StopCommand = new DelegateCommand(StopExamination).ObservesProperty(()=>CanStop());
             _projectPage = projectPage;
         }
 
@@ -90,10 +89,5 @@ namespace ModelModule.ViewModels
             source?.Cancel();
         }
         private bool CanStop() => Stop;
-        private void OnStop()
-        {
-            StopCommand.RaiseCanExecuteChanged();
-        }
-
     }
 }

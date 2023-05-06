@@ -38,13 +38,13 @@ namespace ModelModule.Components
             switch (currentPage)
             {
                 case nameof(View.UserControlOutputPath): 
-                    //_regionManager.RequestNavigate(RegionsName.MainRegion, typeof(UserControlOpenScript);
+                    _regionManager.RequestNavigate(RegionsName.MainRegion, nameof(UserControlOpenScript));
                     break;
                 case nameof(View.UserControlOpenScript):
-                    //_regionManager.RequestNavigate(RegionsName.MainRegion, typeof(UserControlPrintPyScr);
+                    _regionManager.RequestNavigate(RegionsName.MainRegion, nameof(UserControlPrintPyScr));
                     break;
                 case nameof(View.UserControlPrintPyScr):
-                    //_regionManager.RequestNavigate(RegionsName.MainRegion, typeof(UserControlOutputPath);
+                    _regionManager.RequestNavigate(RegionsName.MainRegion, nameof(UserControlOutputPath));
                     break;
             }
         }
@@ -55,13 +55,13 @@ namespace ModelModule.Components
             switch (currentPage)
             {
                 case nameof(View.UserControlOpenScript):
-                    //_regionManager.RequestNavigate(RegionsName.MainRegion, typeof(UserControlOpenDB);
+                    _regionManager.RequestNavigate(RegionsName.MainRegion, nameof(UserControlOpenDB));
                     break;
                 case nameof(View.UserControlPrintPyScr):
-                    //_regionManager.RequestNavigate(RegionsName.MainRegion, typeof(UserControlOpenScript);
+                    _regionManager.RequestNavigate(RegionsName.MainRegion, nameof(UserControlOpenScript));
                     break;
                 case nameof(View.UserControlOutputPath): 
-                    //_regionManager.RequestNavigate(RegionsName.MainRegion, typeof(UserControlPrintPyScr);
+                    _regionManager.RequestNavigate(RegionsName.MainRegion, nameof(UserControlPrintPyScr));
                     break;
             }
         }
@@ -89,6 +89,8 @@ namespace ModelModule.Components
         public ProjectNavigation(IRegionManager regionManager)
         {
             _regionManager = regionManager;
+            _canNext = true;
+            _canPrevious = true;
         }
     }
 }
