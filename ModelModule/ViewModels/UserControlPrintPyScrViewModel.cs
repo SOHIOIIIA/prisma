@@ -9,5 +9,6 @@ namespace ModelModule.ViewModels
     class UserControlPrintPyScrViewModel
     {
         //
+        int id;
     }
 }
