@@ -43,8 +43,7 @@ namespace ModelModule.ViewModels
         public UserControlOutputPathViewModel(IProjectPage projectPage)
         {
             StartCommand = new DelegateCommand(StartExamination);
-            StopCommand = new DelegateCommand(StopExamination).ObservesCanExecute(()=>CanStop);
-            _projectPage = projectPage;
+            StopCommand = new DelegateCommand(StopExamination).ObservesCanExecute(() => CanStop);
         }
 
         /// <summary>
