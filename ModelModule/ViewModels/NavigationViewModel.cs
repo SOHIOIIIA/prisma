@@ -1,6 +1,6 @@
 ﻿using Prism.Regions;
 using Prisma.Core.Abstractions;
-namespace ModelModule.ViewModel
+namespace ModelModule.ViewModels
 {
     public class NavigationViewModel
     {
