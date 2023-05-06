@@ -20,7 +20,7 @@ namespace ModelModule.ViewModels
         private readonly IProjectPage _projectPage;
         private CancellationTokenSource source;
         private bool _stop = false;
-        public bool Stop
+        private bool CanStop
         {
             get => _stop;
             set => SetProperty(ref _stop, value);
@@ -43,7 +43,7 @@ namespace ModelModule.ViewModels
         public UserControlOutputPathViewModel(IProjectPage projectPage)
         {
             StartCommand = new DelegateCommand(StartExamination);
-            StopCommand = new DelegateCommand(StopExamination).ObservesProperty(()=>CanStop());
+            StopCommand = new DelegateCommand(StopExamination).ObservesCanExecute(()=>CanStop);
             _projectPage = projectPage;
         }
 
@@ -60,7 +60,7 @@ namespace ModelModule.ViewModels
                 Process? proc = null;
                 try
                 {
-                    Stop = true;
+                    CanStop = true;
                     PbVisibility = "Visible";
                     string processName = $"\"C:\\Windows\\py.exe {scriptpath} {dbpath}\"";
                     proc = Process.Start("cmd", $"/c {processName}");
@@ -80,7 +80,7 @@ namespace ModelModule.ViewModels
                 }
             }
             else MessageBox.Show("Отсутствует путь к бд или скрипту!!!");
-            Stop = false;
+            CanStop = false;
             PbVisibility = "Hidden";
         }
         private void StopExamination()
@@ -88,6 +88,5 @@ namespace ModelModule.ViewModels
             PbVisibility = "Hidden";
             source?.Cancel();
         }
-        private bool CanStop() => Stop;
     }
 }

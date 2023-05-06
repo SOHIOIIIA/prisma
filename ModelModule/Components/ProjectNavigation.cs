@@ -1,6 +1,9 @@
-﻿using System.Net.Mail;
+﻿using System;
+using System.Net.Mail;
 using System.Windows.Controls;
+using System.Windows.Input;
 using ModelModule.Views;
+using Prism.Commands;
 using Prisma.Core.Abstractions;
 using Prism.Regions;
 using Prism.Mvvm;
@@ -17,9 +20,12 @@ namespace ModelModule.Components
             UserControlOutputPath,
             UserControlPrintPyScr
         }
+
+        public ICommand Next { get; private set; }
+        public ICommand Previous { get; private set; }
         private readonly IRegionManager _regionManager;
-        private bool _canNext;
-        private bool _canPrevious;
+        private bool _canNext = true;
+        private bool _canPrevious = false;
 
         public bool CanNext
         {
@@ -37,31 +43,37 @@ namespace ModelModule.Components
             string currentPage = GetCurrentPage();
             switch (currentPage)
             {
-                case nameof(View.UserControlOutputPath): 
-                    _regionManager.RequestNavigate(RegionsName.MainRegion, nameof(UserControlOpenScript));
+                case nameof(View.UserControlOpenDB):
+                    _regionManager.RequestNavigate(RegionsName.MainRegion, "UserControlOpenScript");
+                    CanPrevious = true;
                     break;
                 case nameof(View.UserControlOpenScript):
                     _regionManager.RequestNavigate(RegionsName.MainRegion, nameof(UserControlPrintPyScr));
                     break;
                 case nameof(View.UserControlPrintPyScr):
                     _regionManager.RequestNavigate(RegionsName.MainRegion, nameof(UserControlOutputPath));
+                    CanPrevious = true;
+                    CanNext = false;
                     break;
             }
         }
 
         public void PreviousPage()
         {
-            string currentPage = GetCurrentPage();
+            string currentPage = GetCurrentPage() ;
+               
             switch (currentPage)
             {
                 case nameof(View.UserControlOpenScript):
                     _regionManager.RequestNavigate(RegionsName.MainRegion, nameof(UserControlOpenDB));
+                    CanPrevious = false;
                     break;
                 case nameof(View.UserControlPrintPyScr):
                     _regionManager.RequestNavigate(RegionsName.MainRegion, nameof(UserControlOpenScript));
                     break;
                 case nameof(View.UserControlOutputPath): 
                     _regionManager.RequestNavigate(RegionsName.MainRegion, nameof(UserControlPrintPyScr));
+                    CanNext = true;
                     break;
             }
         }
@@ -70,27 +82,20 @@ namespace ModelModule.Components
         {
             string[]? listRegionName = new string[3];
             string viewName;
-            var regionCollection = _regionManager.Regions["MainRegion"].Views;
+            var regionCollection = _regionManager.Regions["MainRegion"].ActiveViews;
             foreach (var region in regionCollection)
             {
                 listRegionName = region?.ToString()?.Split('.');
             }
-            
-            if (listRegionName != null)
-            {
-                viewName = listRegionName[2];
-                if (viewName == nameof(View.UserControlOpenDB)) CanPrevious = false;
-                if (viewName == nameof(View.UserControlOutputPath)) CanNext = false;
-                return viewName;
-            }
-            return "NULL";
+            viewName = listRegionName[2];
+            return viewName;
         }
 
         public ProjectNavigation(IRegionManager regionManager)
         {
             _regionManager = regionManager;
-            _canNext = true;
-            _canPrevious = true;
+            Next = new DelegateCommand(NextPage).ObservesCanExecute(() => CanNext);
+            Previous = new DelegateCommand(PreviousPage).ObservesCanExecute(() => CanPrevious);
         }
     }
 }

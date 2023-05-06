@@ -1,4 +1,5 @@
-﻿using System.Windows.Input;
+﻿using System.Windows;
+using System.Windows.Input;
 using Prism.Commands;
 using Prism.Mvvm;
 using Prism.Regions;
@@ -12,24 +13,43 @@ namespace ModelModule.ViewModels
         public ICommand PreviousPage { get; }
         private readonly IRegionManager _regionManager;
         private readonly INavigation _navigation;
-        
+        private bool _canNext;
+        private bool _canPrevious;
+
+        private bool CanNext
+        {
+            get => _canNext;
+            set => SetProperty(ref _canNext, value);
+        }
+        private bool CanPrevious
+        {
+            get => _canPrevious;
+            set => SetProperty(ref _canPrevious, value);
+        }
+
 
         public NavigationViewModel(IRegionManager regionManager, INavigation navigation)
         {
             _regionManager = regionManager;
             _navigation = navigation;
-            NextPage = new DelegateCommand(Next); //.ObservesProperty(()=>_navigation.CanNext);
-            PreviousPage = new DelegateCommand(Previous).ObservesCanExecute(()=>_navigation.CanPrevious);
+            CanNext = _navigation.CanNext;
+            CanPrevious = _navigation.CanPrevious;
+            NextPage = new DelegateCommand(Next).ObservesCanExecute(()=>CanNext);
+            PreviousPage = new DelegateCommand(Previous).ObservesCanExecute(()=>CanPrevious);
         }
 
-        public void Next()
+        private void Next()
         {
             _navigation.NextPage();
+            CanNext = _navigation.CanNext;
+            CanPrevious = _navigation.CanPrevious;
         }
 
-        public void Previous()
+        private void Previous()
         {
-           _navigation.PreviousPage();
+            _navigation.PreviousPage();
+            CanNext = _navigation.CanNext;
+            CanPrevious = _navigation.CanPrevious;
         }
     }
 }

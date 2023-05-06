@@ -1,3 +1,4 @@
+using System;
 using ModelModule.Model;
 using ModelModule.Components;
 using ModelModule.Views;
@@ -23,12 +24,19 @@ namespace ModelModule
         {
             containerRegistry.RegisterSingleton<IProjectPage, ProjectModel>();
             containerRegistry.RegisterSingleton<INavigation, ProjectNavigation>();
+            containerRegistry.RegisterSingleton<Object, UserControlOpenDB>("UserControlOpenDB");
+            containerRegistry.RegisterSingleton<Object, UserControlOpenScript>("UserControlOpenScript");
+            containerRegistry.RegisterSingleton<Object, UserControlPrintPyScr>("UserControlPrintPyScr");
+            containerRegistry.RegisterSingleton<Object, UserControlOutputPath>("UserControlOutputPath");
         }
 
         public void OnInitialized(IContainerProvider containerProvider)
         {
             _regionManager
+                .RegisterViewWithRegion(RegionsName.MainRegion, typeof(UserControlOpenDB))
+                .RegisterViewWithRegion(RegionsName.MainRegion, typeof(UserControlOpenScript))
                 .RegisterViewWithRegion(RegionsName.MainRegion, typeof(UserControlPrintPyScr))
+                .RegisterViewWithRegion(RegionsName.MainRegion, typeof(UserControlOutputPath))
                 .RegisterViewWithRegion(RegionsName.RightRegion, typeof(Navigation));
         }
     }
