@@ -1,6 +1,10 @@
-﻿using Prisma.Core.Abstractions;
+﻿using System.Net.Mail;
+using System.Windows.Controls;
+using ModelModule.Views;
+using Prisma.Core.Abstractions;
 using Prism.Regions;
 using Prism.Mvvm;
+using Prisma.Core;
 
 namespace ModelModule.Components
 {
@@ -28,15 +32,58 @@ namespace ModelModule.Components
             set => SetProperty(ref _canPrevious, value);
         }
 
-        public void NextPage(string page)
+        public void NextPage()
         {
-            object tmp = _regionManager.Regions.GetType();
-            tmp.ToString();
+            string currentPage = GetCurrentPage();
+            switch (currentPage)
+            {
+                case nameof(View.UserControlOutputPath): 
+                    //_regionManager.RequestNavigate(RegionsName.MainRegion, typeof(UserControlOpenScript);
+                    break;
+                case nameof(View.UserControlOpenScript):
+                    //_regionManager.RequestNavigate(RegionsName.MainRegion, typeof(UserControlPrintPyScr);
+                    break;
+                case nameof(View.UserControlPrintPyScr):
+                    //_regionManager.RequestNavigate(RegionsName.MainRegion, typeof(UserControlOutputPath);
+                    break;
+            }
         }
 
-        public void PreviousPage(string page)
+        public void PreviousPage()
         {
+            string currentPage = GetCurrentPage();
+            switch (currentPage)
+            {
+                case nameof(View.UserControlOpenScript):
+                    //_regionManager.RequestNavigate(RegionsName.MainRegion, typeof(UserControlOpenDB);
+                    break;
+                case nameof(View.UserControlPrintPyScr):
+                    //_regionManager.RequestNavigate(RegionsName.MainRegion, typeof(UserControlOpenScript);
+                    break;
+                case nameof(View.UserControlOutputPath): 
+                    //_regionManager.RequestNavigate(RegionsName.MainRegion, typeof(UserControlPrintPyScr);
+                    break;
+            }
+        }
+
+        private string GetCurrentPage()
+        {
+            string[]? listRegionName = new string[3];
+            string viewName;
+            var regionCollection = _regionManager.Regions["MainRegion"].Views;
+            foreach (var region in regionCollection)
+            {
+                listRegionName = region?.ToString()?.Split('.');
+            }
             
+            if (listRegionName != null)
+            {
+                viewName = listRegionName[2];
+                if (viewName == nameof(View.UserControlOpenDB)) CanPrevious = false;
+                if (viewName == nameof(View.UserControlOutputPath)) CanNext = false;
+                return viewName;
+            }
+            return "NULL";
         }
 
         public ProjectNavigation(IRegionManager regionManager)
