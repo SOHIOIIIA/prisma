@@ -6,7 +6,19 @@
              xmlns:local="clr-namespace:ModelModule.Views"
              mc:Ignorable="d" 
              d:DesignHeight="450" d:DesignWidth="800">
-    <Grid>
-            
-    </Grid>
+    <Border BorderBrush = "White" BorderThickness="2" >
+        <Grid >
+            <Grid.RowDefinitions>
+                <RowDefinition Height="30"/>
+                <RowDefinition/>
+            </Grid.RowDefinitions>
+            <Button Grid.Row="0" Width="130" HorizontalAlignment="Left" Content="Отобразить текст python скрипта" Command="{Binding _printCommand}" />
+
+            <ScrollViewer Grid.Row="1">
+                <Border BorderBrush = "Black" BorderThickness="2" >
+                    <TextBlock  Foreground="Black" Grid.Row="1"  x:Name="PrintScript" Text="{Binding PythonScriptText}" />
+                </Border>
+            </ScrollViewer>
+        </Grid>
+    </Border>
 </UserControl>

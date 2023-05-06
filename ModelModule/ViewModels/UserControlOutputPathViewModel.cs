@@ -94,5 +94,6 @@ namespace ModelModule.ViewModels
         {
             StopCommand.RaiseCanExecuteChanged();
         }
+
     }
 }

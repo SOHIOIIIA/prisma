@@ -4,6 +4,7 @@ using Prism.Mvvm;
 using Prisma.Core.Abstractions;
 using System;
 using System.Collections.Generic;
+using System.ComponentModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
