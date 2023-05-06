@@ -16,7 +16,7 @@ using Prism.Commands;
 
 namespace ModelModule.ViewModel
 {
-    public class ViewModelOpenDB: BindableBase
+    public class UserControlOpenDBViewModel: BindableBase
     {
         private readonly IProjectPage _projectPage;
 
@@ -33,7 +33,7 @@ namespace ModelModule.ViewModel
             }
         }
 
-        public ViewModelOpenDB(IProjectPage projectPage)
+        public UserControlOpenDBViewModel(IProjectPage projectPage)
         {
             _projectPage = projectPage;
 
