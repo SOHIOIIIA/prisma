@@ -14,11 +14,12 @@ using Prisma.Core.Abstractions;
 using Prism.Mvvm;
 using Prism.Commands;
 
-namespace ModelModule.ViewModel
+namespace ModelModule.ViewModels
 {
     public class UserControlOpenDBViewModel: BindableBase
     {
         private readonly IProjectPage _projectPage;
+        public ICommand _openEcxel { get; }
 
         private DataTable _databases = new DataTable();
         public DataTable Databases
@@ -36,6 +37,7 @@ namespace ModelModule.ViewModel
         public UserControlOpenDBViewModel(IProjectPage projectPage)
         {
             _projectPage = projectPage;
+            _openEcxel = new DelegateCommand(PerformOpenExcel);
 
         }
 
@@ -82,12 +84,9 @@ namespace ModelModule.ViewModel
         }
 
 
-        private DataTable _excelData;
-        IExcelDataReader edr;
 
 
-        private DelegateCommand openEcxel;
-        public ICommand OpenExcel => openEcxel ??= new DelegateCommand(PerformOpenExcel);
+       
 
         private void PerformOpenExcel()
         {
@@ -99,14 +98,6 @@ namespace ModelModule.ViewModel
             FilePath = openFileDialog.FileName;
             _projectPage.DataBasePath = FilePath;
             var task = Task.Run(() => ReadExcel());
-            //ReadExcelData(filename);
-            //Workbook workbook = new Workbook(FilePath);
-            //Worksheet worksheet = workbook.Worksheets[0];
-            // Получить количество строк и столбцов
-            //RowCount = worksheet.Cells.MaxDataRow;
-            //ColumnCount = worksheet.Cells.MaxDataColumn;
-            //DataTable = worksheet.Cells.ExportDataTable(0, 0, worksheet.Cells.MaxDataRow + 1, worksheet.Cells.MaxDataColumn + 1, true);
-            //dataGrid.ItemsSource = dataTable.DefaultView;
 
 
         }
@@ -119,7 +110,6 @@ namespace ModelModule.ViewModel
             RowCount = worksheet.Cells.MaxDataRow;
             ColumnCount = worksheet.Cells.MaxDataColumn;
             Databases = worksheet.Cells.ExportDataTable(0, 0, worksheet.Cells.MaxDataRow + 1, worksheet.Cells.MaxDataColumn + 1, true); // Записал на прямую и сделал попытку ленивой загрузки
-            //Databases = dataTable; // DataTable dataTable
-        }
+           }
     }
 }

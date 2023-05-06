@@ -27,7 +27,7 @@ namespace ModelModule
         public void OnInitialized(IContainerProvider containerProvider)
         {
             _regionManager
-                .RegisterViewWithRegion(RegionsName.MainRegion, typeof(View1))
+                .RegisterViewWithRegion(RegionsName.MainRegion, typeof(UserControlOpenDB))
                 .RegisterViewWithRegion(RegionsName.RightRegion, typeof(Navigation));
         }
     }
