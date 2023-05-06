@@ -1,5 +1,6 @@
 using ModelModule.Model;
 using ModelModule.View;
+using ModelModule.Views;
 using Prism.Ioc;
 using Prism.Modularity;
 using Prism.Regions;
@@ -26,8 +27,8 @@ namespace ModelModule
         public void OnInitialized(IContainerProvider containerProvider)
         {
             _regionManager
-                .RegisterViewWithRegion(RegionsName.MainRegion, typeof(View1));
-            //.RegisterViewWithRegion(RegionsName.RightRegion, typeof(View2));
+                .RegisterViewWithRegion(RegionsName.MainRegion, typeof(View1))
+                .RegisterViewWithRegion(RegionsName.RightRegion, typeof(Navigation));
         }
     }
 }
