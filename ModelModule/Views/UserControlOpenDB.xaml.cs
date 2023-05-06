@@ -13,7 +13,7 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 
-namespace ModelModule.View
+namespace ModelModule.Views
 {
     /// <summary>
     /// Логика взаимодействия для UserControlOpenDB.xaml
