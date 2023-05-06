@@ -6,7 +6,7 @@ namespace Prisma.Core.Abstractions
     {
         bool CanNext { get; set; }
         bool CanPrevious { get; set; }
-        void NextPage(string next_page);
-        void PreviousPage(string prev_page);
+        void NextPage();
+        void PreviousPage();
     }
 }

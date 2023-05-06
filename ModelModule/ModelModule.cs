@@ -1,5 +1,5 @@
+using ModelModule.Components;
 using ModelModule.Model;
-using ModelModule.View;
 using ModelModule.Views;
 using Prism.Ioc;
 using Prism.Modularity;
@@ -19,15 +19,16 @@ namespace ModelModule
         }
         #endregion
 
-        public void RegisterTypes(IContainerRegistry containerRegistry) {
+        public void RegisterTypes(IContainerRegistry containerRegistry)
+        {
             containerRegistry.RegisterSingleton<IProjectPage, ProjectModel>();
-            //containerRegistry.RegisterSingleton<INavigation, MyNavigation>();
+            containerRegistry.RegisterSingleton<INavigation, ProjectNavigation>();
         }
 
         public void OnInitialized(IContainerProvider containerProvider)
         {
             _regionManager
-                .RegisterViewWithRegion(RegionsName.MainRegion, typeof(View1))
+                .RegisterViewWithRegion(RegionsName.MainRegion, typeof())
                 .RegisterViewWithRegion(RegionsName.RightRegion, typeof(Navigation));
         }
     }
