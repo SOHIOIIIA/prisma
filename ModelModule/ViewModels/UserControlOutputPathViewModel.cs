@@ -44,7 +44,7 @@ namespace ModelModule.ViewModels
         {
             StartCommand = new DelegateCommand(StartExamination);
             StopCommand = new DelegateCommand(StopExamination, CanStop);
-            this.WhenPropertyChanged(x => x.Stop, OnStop);
+           // this.WhenPropertyChanged(x => x.Stop, OnStop);
             _projectPage = projectPage;
         }
 
@@ -92,7 +92,7 @@ namespace ModelModule.ViewModels
         private bool CanStop() => Stop;
         private void OnStop()
         {
-            StopCommand.RaiseCanExecuteChanged();
+            //StopCommand.RaiseCanExecuteChanged();
         }
 
     }

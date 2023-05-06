@@ -10,12 +10,12 @@
              d:DesignHeight="300" d:DesignWidth="300">
     <Grid>
         <Grid.RowDefinitions>
-            <RowDefinition/>
+           
             <RowDefinition/>
         </Grid.RowDefinitions>
         <StackPanel Orientation="Horizontal" Grid.Row="1" HorizontalAlignment="Right" Margin="10,10,10,10">
-            <Button Content="Назад"  Height="50" Width="100" Command="{Binding PreviousPage}" Margin="0,0,15,0" />
-            <Button Content="Далее"  Height="50" Width="100" Command="{Binding NextPage}" />
+            <Button Content="Назад"  Height="40" Width="80" Command="{Binding PreviousPage}" Margin="0,0,15,0" FontFamily="Microsoft JhengHei Light" FontSize="20" />
+            <Button Content="Далее"  Height="40" Width="80" Command="{Binding NextPage}" FontFamily="Microsoft JhengHei Light" FontSize="20" />
         </StackPanel>
     </Grid>
 </UserControl>

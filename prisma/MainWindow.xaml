@@ -9,12 +9,14 @@
         prism:ViewModelLocator.AutoWireViewModel="True"
         mc:Ignorable="d"
         Title="MainWindow" Height="450" Width="800">
-    <Grid>
-        <Grid.ColumnDefinitions>
-            <ColumnDefinition/>
-            <ColumnDefinition/>
-        </Grid.ColumnDefinitions>
-        <ContentControl prism:RegionManager.RegionName="{x:Static core:RegionsName.MainRegion}"/>
-        <ContentControl Grid.Column="1" prism:RegionManager.RegionName="{x:Static core:RegionsName.RightRegion}"/>
-    </Grid>
+    <Border Background="DarkGray">
+        <Grid>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="49*"/>
+                <RowDefinition Height="13*"/>
+            </Grid.RowDefinitions>
+            <ContentControl prism:RegionManager.RegionName="{x:Static core:RegionsName.MainRegion}"/>
+            <ContentControl Grid.Row="1" prism:RegionManager.RegionName="{x:Static core:RegionsName.RightRegion}" Margin="0,21,0,0"/>
+        </Grid>
+    </Border>
 </Window>

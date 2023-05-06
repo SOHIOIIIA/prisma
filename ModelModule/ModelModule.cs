@@ -1,5 +1,4 @@
 using ModelModule.Model;
-using ModelModule.View;
 using ModelModule.Views;
 using Prism.Ioc;
 using Prism.Modularity;
@@ -27,7 +26,10 @@ namespace ModelModule
         public void OnInitialized(IContainerProvider containerProvider)
         {
             _regionManager
-                .RegisterViewWithRegion(RegionsName.MainRegion, typeof(UserControlPrintPyScr))
+                .RegisterViewWithRegion(RegionsName.MainRegion, typeof(UserControlOpenDB))
+                 //.RegisterViewWithRegion(RegionsName.MainRegion, typeof(UserControlOpenScript))
+                 //.RegisterViewWithRegion(RegionsName.MainRegion, typeof(UserControlOutputPath))
+                 //.RegisterViewWithRegion(RegionsName.MainRegion, typeof(UserControlPrintPyScr))
                 .RegisterViewWithRegion(RegionsName.RightRegion, typeof(Navigation));
         }
     }

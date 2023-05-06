@@ -20,11 +20,11 @@
                 <RowDefinition Height="*"/>
             </Grid.RowDefinitions>
 
-            <Button Content="File" Command="{Binding _openEcxel}" Width="100" HorizontalAlignment="Left" FontFamily="Consolas" BorderBrush="Black" BorderThickness="2,2,2,2" FontSize="18" />
-            <TextBlock Text="{Binding FilePath}" Foreground="Black" Grid.Row="1" Margin="5" TextWrapping="Wrap" FontFamily="Consolas"/>
-            <TextBlock Text="{Binding RowCount, StringFormat='Rows: {0}'}" Foreground="Black" Grid.Row="2" Margin="5" FontFamily="Consolas" />
-            <TextBlock Text="{Binding ColumnCount, StringFormat='Columns: {0}'}" Foreground="Black" Grid.Row="3" Margin="5" FontFamily="Consolas"/>
-            <DataGrid ItemsSource="{Binding Databases}" Grid.Row="4" Margin="5" AutoGenerateColumns="True" VirtualizingStackPanel.VirtualizationMode="Recycling"/>
+            <Button Content="File" Command="{Binding _openEcxel}" Width="100" HorizontalAlignment="Left" FontFamily="Microsoft JhengHei Light" BorderBrush="Black" BorderThickness="1,1,1,1" FontSize="18" />
+            <TextBlock Text="{Binding FilePath}" Foreground="Black" Grid.Row="1" Margin="5" TextWrapping="Wrap" FontFamily="Microsoft JhengHei Light" FontSize="14" />
+            <TextBlock Text="{Binding RowCount, StringFormat='Rows: {0}'}" Foreground="Black" Grid.Row="2" Margin="5" FontFamily="Microsoft JhengHei Light" FontSize="14" />
+            <TextBlock Text="{Binding ColumnCount, StringFormat='Columns: {0}'}" Foreground="Black" Grid.Row="3" Margin="5" FontFamily="Microsoft JhengHei Light" FontSize="14" />
+            <DataGrid ItemsSource="{Binding Databases}" Grid.Row="4" Margin="5" AutoGenerateColumns="True" VirtualizingStackPanel.VirtualizationMode="Recycling" FontFamily="Microsoft JhengHei Light" FontSize="12"/>
 
 
         </Grid>

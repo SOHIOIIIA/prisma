@@ -12,11 +12,11 @@
                 <RowDefinition Height="30"/>
                 <RowDefinition/>
             </Grid.RowDefinitions>
-            <Button Grid.Row="0" Width="130" HorizontalAlignment="Left" Content="Отобразить текст python скрипта" Command="{Binding _printCommand}" />
+            <Button Grid.Row="0" Width="280" HorizontalAlignment="Left" Content="Отобразить текст python скрипта" Command="{Binding _printCommand}" FontFamily="Consolas" FontSize="16" />
 
             <ScrollViewer Grid.Row="1">
                 <Border BorderBrush = "Black" BorderThickness="2" >
-                    <TextBlock  Foreground="Black" Grid.Row="1"  x:Name="PrintScript" Text="{Binding PythonScriptText}" />
+                    <TextBlock  Foreground="Black" FontFamily="Consolas" Grid.Row="1"  x:Name="PrintScript" Text="{Binding PythonScriptText}" Height="368" />
                 </Border>
             </ScrollViewer>
         </Grid>
