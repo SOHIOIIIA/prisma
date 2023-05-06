@@ -1,0 +1,32 @@
+﻿<UserControl x:Class="ModelModule.View.UserControlOpenDB"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:ModelModule.View"
+             mc:Ignorable="d" 
+             xmlns:prism="http://prismlibrary.com/"
+             prism:ViewModelLocator.AutoWireViewModel="True"
+             d:DesignHeight="450" d:DesignWidth="800"
+             
+      >
+    <Border BorderBrush = "White" BorderThickness="2" >
+        <Grid>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="30"/>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="*"/>
+            </Grid.RowDefinitions>
+
+            <Button Content="File" Command="{Binding OpenExcel}" Width="100" HorizontalAlignment="Left" FontFamily="Consolas" BorderBrush="Black" BorderThickness="2,2,2,2" FontSize="18" />
+            <TextBlock Text="{Binding FilePath}" Foreground="White" Grid.Row="1" Margin="5" TextWrapping="Wrap" FontFamily="Consolas"/>
+            <TextBlock Text="{Binding RowCount, StringFormat='Rows: {0}'}" Foreground="White" Grid.Row="2" Margin="5" FontFamily="Consolas" />
+            <TextBlock Text="{Binding ColumnCount, StringFormat='Columns: {0}'}" Foreground="White" Grid.Row="3" Margin="5" FontFamily="Consolas"/>
+            <DataGrid ItemsSource="{Binding Databases}" Grid.Row="4" Margin="5" AutoGenerateColumns="True" VirtualizingStackPanel.VirtualizationMode="Recycling"/>
+
+
+        </Grid>
+    </Border>
+</UserControl>

@@ -30,7 +30,8 @@ namespace ModelModule.Components
 
         public void NextPage(string page)
         {
-            //_regionManager.
+            object tmp = _regionManager.Regions.GetType();
+            tmp.ToString();
         }
 
         public void PreviousPage(string page)
