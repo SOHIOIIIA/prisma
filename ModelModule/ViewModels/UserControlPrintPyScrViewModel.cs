@@ -17,7 +17,7 @@ namespace ModelModule.ViewModels
     public class UserControlPrintPyScrViewModel : BindableBase
     {
         private readonly IProjectPage _projectPage;
-        public ICommand PrintCommand { get; }
+        public ICommand _printCommand { get; }
         private string _pythonScriptText = "";
         public string PythonScriptText
         {
@@ -28,7 +28,7 @@ namespace ModelModule.ViewModels
         public UserControlPrintPyScrViewModel(IProjectPage projectPage)
         {   
             _projectPage = projectPage;
-            PrintCommand = new DelegateCommand(PrintPyScript);
+            _printCommand = new DelegateCommand(PrintPyScript);
             
         }
         private void PrintPyScript()
