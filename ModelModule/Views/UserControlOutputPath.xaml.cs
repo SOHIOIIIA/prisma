@@ -16,11 +16,11 @@ using System.Windows.Shapes;
 namespace ModelModule.Views
 {
     /// <summary>
-    /// Логика взаимодействия для UserControlOpenScript.xaml
+    /// Логика взаимодействия для UserControlOutputPath.xaml
     /// </summary>
-    public partial class UserControlOpenScript : UserControl
+    public partial class UserControlOutputPath : UserControl
     {
-        public UserControlOpenScript()
+        public UserControlOutputPath()
         {
             InitializeComponent();
         }
