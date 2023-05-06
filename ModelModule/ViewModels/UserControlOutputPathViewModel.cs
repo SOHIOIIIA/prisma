@@ -66,7 +66,15 @@ namespace ModelModule.ViewModels
                     proc = Process.Start("cmd", $"/c {processName}");
                     await proc.WaitForExitAsync(source.Token);
                     await Task.Delay(3000);
-                    MessageBox.Show("Complit script!"); // Впринципи это можно убрать (уточнить вопрос про /q echo off)
+                    /*var split_path = dbpath.Split("\\");
+                    split_path[^1] = "";
+                    string model_path = "";
+                    foreach (var ind in split_path)
+                    {
+                        model_path += "\\" + ind;
+                    }
+                    OutputPath = model_path[1..^1];*/
+                    //MessageBox.Show("Complit script!"); // Впринципи это можно убрать (уточнить вопрос про /q echo off)
                 }
                 catch (System.Threading.Tasks.TaskCanceledException)
                 {

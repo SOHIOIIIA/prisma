@@ -7,7 +7,10 @@
         xmlns:core="clr-namespace:Prisma.Core;assembly=Prisma.Core"
         xmlns:prism="http://prismlibrary.com/"
         mc:Ignorable="d"
-        Title="MainWindow" Height="450" Width="800">
+        Title="Проект по C#" Height="900" Width="1600">
+    <Window.Background>
+        <ImageBrush ImageSource="/Images/back.png"/>
+    </Window.Background>
     <Grid>
         <Grid.ColumnDefinitions>
             <ColumnDefinition/>

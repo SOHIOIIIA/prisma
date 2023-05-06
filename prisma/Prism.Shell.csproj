@@ -18,4 +18,11 @@
     <ProjectReference Include="..\Prisma.Core\Prisma.Core.csproj" />
   </ItemGroup>
 
+  <ItemGroup>
+    <None Remove="Images\back.png" />
+    <Resource Include="Images\back.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Resource>
+  </ItemGroup>
+
 </Project>
