@@ -6,17 +6,17 @@
         xmlns:local="clr-namespace:Prism.Shell"
         xmlns:core="clr-namespace:Prisma.Core;assembly=Prisma.Core"
         xmlns:prism="http://prismlibrary.com/"
-        prism:ViewModelLocator.AutoWireViewModel="True"
         mc:Ignorable="d"
-        Title="MainWindow" Height="450" Width="800">
-    <Border Background="DarkGray">
-        <Grid>
-            <Grid.RowDefinitions>
-                <RowDefinition Height="49*"/>
-                <RowDefinition Height="13*"/>
-            </Grid.RowDefinitions>
-            <ContentControl prism:RegionManager.RegionName="{x:Static core:RegionsName.MainRegion}"/>
-            <ContentControl Grid.Row="1" prism:RegionManager.RegionName="{x:Static core:RegionsName.RightRegion}" Margin="0,21,0,0"/>
-        </Grid>
-    </Border>
+        Title="Проект по C#" Height="900" Width="1600">
+    <Window.Background>
+        <ImageBrush ImageSource="/Images/back.png"/>
+    </Window.Background>
+    <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition/>
+            <ColumnDefinition/>
+        </Grid.ColumnDefinitions>
+        <ContentControl prism:RegionManager.RegionName="{x:Static core:RegionsName.MainRegion}"/>
+        <ContentControl Grid.Column="1" prism:RegionManager.RegionName="{x:Static core:RegionsName.RightRegion}"/>
+    </Grid>
 </Window>

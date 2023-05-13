@@ -1,16 +1,10 @@
-﻿using ModelModule.Model;
-using System;
-using System.Collections.Generic;
-using System.Diagnostics;
-using System.Linq;
-using System.Text;
+﻿using System.Diagnostics;
 using System.Threading;
 using System.Threading.Tasks;
 using System.Windows.Input;
 using System.Windows;
 using Prism.Mvvm;
 using Prisma.Core.Abstractions;
-using Prism.Mvvm;
 using Prism.Commands;
 
 namespace ModelModule.ViewModels
@@ -20,7 +14,7 @@ namespace ModelModule.ViewModels
         private readonly IProjectPage _projectPage;
         private CancellationTokenSource source;
         private bool _stop = false;
-        public bool Stop
+        private bool CanStop
         {
             get => _stop;
             set => SetProperty(ref _stop, value);
@@ -42,14 +36,13 @@ namespace ModelModule.ViewModels
 
         public UserControlOutputPathViewModel(IProjectPage projectPage)
         {
-            StartCommand = new DelegateCommand(StartExamination);
-            StopCommand = new DelegateCommand(StopExamination, CanStop);
-           // this.WhenPropertyChanged(x => x.Stop, OnStop);
             _projectPage = projectPage;
+            StartCommand = new DelegateCommand(StartExamination);
+            StopCommand = new DelegateCommand(StopExamination).ObservesCanExecute(() => CanStop);
         }
 
         /// <summary>
-        /// Сама кнопка есть, надо настроить ее видимость, скорее всего через costum nastr
+        ///
         /// </summary>
         private async void StartExamination()
         {
@@ -61,13 +54,20 @@ namespace ModelModule.ViewModels
                 Process? proc = null;
                 try
                 {
-                    Stop = true;
+                    CanStop = true;
                     PbVisibility = "Visible";
                     string processName = $"\"C:\\Windows\\py.exe {scriptpath} {dbpath}\"";
                     proc = Process.Start("cmd", $"/c {processName}");
                     await proc.WaitForExitAsync(source.Token);
                     await Task.Delay(3000);
-                    MessageBox.Show("Complit script!"); // Впринципи это можно убрать (уточнить вопрос про /q echo off)
+                    var split_path = dbpath.Split("\\");
+                    split_path[^1] = "";
+                    string model_path = "";
+                    foreach (var ind in split_path)
+                    {
+                        model_path += "\\" + ind;
+                    }
+                    OutputPath = model_path[1..^1];
                 }
                 catch (System.Threading.Tasks.TaskCanceledException)
                 {
@@ -81,7 +81,7 @@ namespace ModelModule.ViewModels
                 }
             }
             else MessageBox.Show("Отсутствует путь к бд или скрипту!!!");
-            Stop = false;
+            CanStop = false;
             PbVisibility = "Hidden";
         }
         private void StopExamination()
@@ -89,11 +89,5 @@ namespace ModelModule.ViewModels
             PbVisibility = "Hidden";
             source?.Cancel();
         }
-        private bool CanStop() => Stop;
-        private void OnStop()
-        {
-            //StopCommand.RaiseCanExecuteChanged();
-        }
-
     }
 }

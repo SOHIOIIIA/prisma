@@ -1,4 +1,6 @@
+using System;
 using ModelModule.Model;
+using ModelModule.Components;
 using ModelModule.Views;
 using Prism.Ioc;
 using Prism.Modularity;
@@ -18,18 +20,23 @@ namespace ModelModule
         }
         #endregion
 
-        public void RegisterTypes(IContainerRegistry containerRegistry) {
+        public void RegisterTypes(IContainerRegistry containerRegistry)
+        {
             containerRegistry.RegisterSingleton<IProjectPage, ProjectModel>();
-            //containerRegistry.RegisterSingleton<INavigation, MyNavigation>();
+            containerRegistry.RegisterSingleton<INavigation, ProjectNavigation>();
+            containerRegistry.RegisterSingleton<Object, UserControlOpenDB>("UserControlOpenDB");
+            containerRegistry.RegisterSingleton<Object, UserControlOpenScript>("UserControlOpenScript");
+            containerRegistry.RegisterSingleton<Object, UserControlPrintPyScr>("UserControlPrintPyScr");
+            containerRegistry.RegisterSingleton<Object, UserControlOutputPath>("UserControlOutputPath");
         }
 
         public void OnInitialized(IContainerProvider containerProvider)
         {
             _regionManager
                 .RegisterViewWithRegion(RegionsName.MainRegion, typeof(UserControlOpenDB))
-                 //.RegisterViewWithRegion(RegionsName.MainRegion, typeof(UserControlOpenScript))
-                 //.RegisterViewWithRegion(RegionsName.MainRegion, typeof(UserControlOutputPath))
-                 //.RegisterViewWithRegion(RegionsName.MainRegion, typeof(UserControlPrintPyScr))
+                .RegisterViewWithRegion(RegionsName.MainRegion, typeof(UserControlOpenScript))
+                .RegisterViewWithRegion(RegionsName.MainRegion, typeof(UserControlPrintPyScr))
+                .RegisterViewWithRegion(RegionsName.MainRegion, typeof(UserControlOutputPath))
                 .RegisterViewWithRegion(RegionsName.RightRegion, typeof(Navigation));
         }
     }
