@@ -9,11 +9,13 @@
              prism:ViewModelLocator.AutoWireViewModel="True"
              d:DesignHeight="450" d:DesignWidth="800">
 
-    
+    <d:UserControl.Resources>
+        <ResourceDictionary Source="pack://application:,,,/Prisma.Core;component/Resources/MainResource.xaml"/>
+    </d:UserControl.Resources>
     <Border BorderBrush = "White" BorderThickness="2" >
         <Grid >
-            <Button Content="Обзор" Width="100" Height="30" FontFamily="Microsoft JhengHei Light" FontSize="18"  HorizontalAlignment="Left" VerticalAlignment="Top" Command="{Binding _openScriptPy}"/>
-            <TextBlock Text="{Binding FilePath}" FontFamily="Microsoft JhengHei Light" Margin="20,54,26,28" Foreground="White" TextWrapping="Wrap" />
+            <Button Content="Обзор" Width="100" Height="30"  HorizontalAlignment="Left" VerticalAlignment="Top" Command="{Binding _openScriptPy}" Style="{StaticResource ButtonStyle}"/>
+            <TextBlock Text="{Binding FilePath}"  Margin="20,54,26,28" Style="{StaticResource TextBlockStyle}" />
         </Grid>
     </Border>
 </UserControl>

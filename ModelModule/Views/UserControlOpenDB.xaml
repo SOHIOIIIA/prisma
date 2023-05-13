@@ -7,10 +7,11 @@
              mc:Ignorable="d" 
              xmlns:prism="http://prismlibrary.com/"
              prism:ViewModelLocator.AutoWireViewModel="True"
-             d:DesignHeight="450" d:DesignWidth="800"
-             
-      >
-    <Border BorderBrush = "White" BorderThickness="2" >
+             d:DesignHeight="450" d:DesignWidth="800">
+    <d:UserControl.Resources>
+        <ResourceDictionary Source="pack://application:,,,/Prisma.Core;component/Resources/MainResource.xaml"/>
+    </d:UserControl.Resources>
+        <Border BorderBrush = "White" BorderThickness="2" >
         <Grid>
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="93*"/>

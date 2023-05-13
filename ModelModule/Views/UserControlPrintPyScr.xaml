@@ -8,17 +8,19 @@
              xmlns:prism="http://prismlibrary.com/"
              prism:ViewModelLocator.AutoWireViewModel="True"
              d:DesignHeight="450" d:DesignWidth="800">
+    <d:UserControl.Resources>
+        <ResourceDictionary Source="pack://application:,,,/Prisma.Core;component/Resources/MainResource.xaml"/>
+    </d:UserControl.Resources>
     <Border BorderBrush = "White" BorderThickness="2" >
         <Grid >
             <Grid.RowDefinitions>
                 <RowDefinition Height="30"/>
                 <RowDefinition/>
             </Grid.RowDefinitions>
-            <Button Grid.Row="0" Width="280" HorizontalAlignment="Left" Content="Отобразить текст python скрипта" Command="{Binding _printCommand}" FontFamily="Consolas" FontSize="16" />
-
+            <Button Grid.Row="0" Width="130" HorizontalAlignment="Left" Content="Отобразить текст python скрипта" Command="{Binding _printCommand}" Style="{StaticResource ButtonStyle}"/>
             <ScrollViewer Grid.Row="1">
                 <Border BorderBrush = "Black" BorderThickness="2" >
-                    <TextBlock  Foreground="Black" FontFamily="Consolas" Grid.Row="1"  x:Name="PrintScript" Text="{Binding PythonScriptText}" Height="368" />
+                    <TextBlock Grid.Row="1"  x:Name="PrintScript" Text="{Binding PythonScriptText}" Style="{StaticResource TextBlockStyle}"/>
                 </Border>
             </ScrollViewer>
         </Grid>
