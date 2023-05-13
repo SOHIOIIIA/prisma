@@ -13,6 +13,10 @@
     </d:UserControl.Resources>
         <Border BorderBrush = "White" BorderThickness="2" >
         <Grid>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="93*"/>
+                <ColumnDefinition Width="703*"/>
+            </Grid.ColumnDefinitions>
             <Grid.RowDefinitions>
                 <RowDefinition Height="30"/>
                 <RowDefinition Height="Auto"/>
@@ -21,11 +25,11 @@
                 <RowDefinition Height="*"/>
             </Grid.RowDefinitions>
 
-            <Button Content="File" Command="{Binding _openEcxel}" Width="100" HorizontalAlignment="Left" FontFamily="Consolas" BorderBrush="Black" BorderThickness="2,2,2,2" FontSize="18" />
-            <TextBlock Text="{Binding FilePath}" Grid.Row="1" Margin="5" Style="{StaticResource TextBlockStyle}"/>
-            <TextBlock Text="{Binding RowCount, StringFormat='Rows: {0}'}" Grid.Row="2" Margin="5" Style="{StaticResource TextBlockStyle}" />
-            <TextBlock Text="{Binding ColumnCount, StringFormat='Columns: {0}'}" Grid.Row="3" Margin="5" Style="{StaticResource TextBlockStyle}"/>
-            <DataGrid ItemsSource="{Binding Databases}" Grid.Row="4" Margin="5" AutoGenerateColumns="True" VirtualizingStackPanel.VirtualizationMode="Recycling"/>
+            <Button Content="File" Command="{Binding _openEcxel}" Width="93" HorizontalAlignment="Center"  Style="{StaticResource ButtonStyle}"   />
+            <TextBlock Text="{Binding FilePath}"  Grid.Row="1" Margin="5,5,5,5"  Grid.ColumnSpan="2" Style="{StaticResource TextBlockStyle}" />
+            <TextBlock Text="{Binding RowCount, StringFormat='Rows: {0}'}" Grid.Row="2" Margin="5,5,5,5" Grid.ColumnSpan="2" Style="{StaticResource TextBlockStyle}" />
+            <TextBlock Text="{Binding ColumnCount, StringFormat='Columns: {0}'}"  Grid.Row="3" Margin="5,5,5,5"  Grid.ColumnSpan="2" Style="{StaticResource TextBlockStyle}" />
+            <DataGrid ItemsSource="{Binding Databases}" Grid.Row="4" Margin="5,5,5,5" VirtualizingStackPanel.VirtualizationMode="Recycling" Grid.ColumnSpan="2" Style="{StaticResource DataGridStyle}"/>
 
 
         </Grid>
