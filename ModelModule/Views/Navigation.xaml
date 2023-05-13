@@ -8,7 +8,9 @@
              prism:ViewModelLocator.AutoWireViewModel="True"
              mc:Ignorable="d"
              d:DesignHeight="300" d:DesignWidth="300">
-    
+    <d:UserControl.Resources>
+        <ResourceDictionary Source="pack://application:,,,/Prisma.Core;component/Resources/MainResource.xaml"/>
+    </d:UserControl.Resources>
     <Grid>
         <Grid.RowDefinitions>
             <RowDefinition/>
