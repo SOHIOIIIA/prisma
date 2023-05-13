@@ -1,4 +1,4 @@
-﻿namespace Prisma.Core
+namespace Prisma.Core
 {
     public static class RegionsName
     {
