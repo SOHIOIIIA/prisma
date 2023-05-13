@@ -2,8 +2,10 @@
 using System.Net.Mail;
 using System.Windows.Controls;
 using System.Windows.Input;
+using Aspose.Cells.Charts;
 using ModelModule.Views;
 using Prism.Commands;
+using Prism.Events;
 using Prisma.Core.Abstractions;
 using Prism.Regions;
 using Prism.Mvvm;
@@ -23,6 +25,8 @@ namespace ModelModule.Components
 
         public ICommand Next { get; private set; }
         public ICommand Previous { get; private set; }
+
+        public string CurrentPage { get; set; }
         private readonly IRegionManager _regionManager;
         private bool _canNext = true;
         private bool _canPrevious = false;
@@ -40,18 +44,21 @@ namespace ModelModule.Components
 
         public void NextPage()
         {
-            string currentPage = GetCurrentPage();
-            switch (currentPage)
+            CurrentPage = GetCurrentPage();
+            switch (CurrentPage)
             {
                 case nameof(View.UserControlOpenDB):
-                    _regionManager.RequestNavigate(RegionsName.MainRegion, "UserControlOpenScript");
+                    _regionManager.RequestNavigate(RegionsName.MainRegion, nameof(UserControlOpenScript));
+                    CurrentPage = nameof(UserControlOpenScript);
                     CanPrevious = true;
                     break;
                 case nameof(View.UserControlOpenScript):
                     _regionManager.RequestNavigate(RegionsName.MainRegion, nameof(UserControlPrintPyScr));
+                    CurrentPage = nameof(UserControlPrintPyScr);
                     break;
                 case nameof(View.UserControlPrintPyScr):
                     _regionManager.RequestNavigate(RegionsName.MainRegion, nameof(UserControlOutputPath));
+                    CurrentPage = nameof(UserControlOutputPath);
                     CanPrevious = true;
                     CanNext = false;
                     break;
@@ -60,25 +67,28 @@ namespace ModelModule.Components
 
         public void PreviousPage()
         {
-            string currentPage = GetCurrentPage() ;
+            CurrentPage = GetCurrentPage() ;
                
-            switch (currentPage)
+            switch (CurrentPage)
             {
                 case nameof(View.UserControlOpenScript):
                     _regionManager.RequestNavigate(RegionsName.MainRegion, nameof(UserControlOpenDB));
+                    CurrentPage = nameof(UserControlOpenDB);
                     CanPrevious = false;
                     break;
                 case nameof(View.UserControlPrintPyScr):
                     _regionManager.RequestNavigate(RegionsName.MainRegion, nameof(UserControlOpenScript));
+                    CurrentPage = nameof(UserControlOpenScript);
                     break;
                 case nameof(View.UserControlOutputPath): 
                     _regionManager.RequestNavigate(RegionsName.MainRegion, nameof(UserControlPrintPyScr));
+                    CurrentPage = nameof(UserControlPrintPyScr);
                     CanNext = true;
                     break;
             }
         }
 
-        private string GetCurrentPage()
+        public string GetCurrentPage()
         {
             string[]? listRegionName = new string[3];
             string viewName;

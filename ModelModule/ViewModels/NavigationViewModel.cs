@@ -1,9 +1,11 @@
 ﻿using System.Windows;
 using System.Windows.Input;
 using Prism.Commands;
+using Prism.Events;
 using Prism.Mvvm;
 using Prism.Regions;
 using Prisma.Core.Abstractions;
+using Prisma.Core.Events;
 
 namespace ModelModule.ViewModels
 {
@@ -12,6 +14,7 @@ namespace ModelModule.ViewModels
         public ICommand NextPage { get; }
         public ICommand PreviousPage { get; }
         private readonly IRegionManager _regionManager;
+        private readonly IEventAggregator _ev;
         private readonly INavigation _navigation;
         private bool _canNext;
         private bool _canPrevious;
@@ -28,9 +31,10 @@ namespace ModelModule.ViewModels
         }
 
 
-        public NavigationViewModel(IRegionManager regionManager, INavigation navigation)
+        public NavigationViewModel(IRegionManager regionManager, INavigation navigation, IEventAggregator ev)
         {
             _regionManager = regionManager;
+            _ev = ev;
             _navigation = navigation;
             CanNext = _navigation.CanNext;
             CanPrevious = _navigation.CanPrevious;
@@ -41,6 +45,7 @@ namespace ModelModule.ViewModels
         private void Next()
         {
             _navigation.NextPage();
+            _ev.GetEvent<PageLoad>().Publish(_navigation.CurrentPage);
             CanNext = _navigation.CanNext;
             CanPrevious = _navigation.CanPrevious;
         }
@@ -48,6 +53,7 @@ namespace ModelModule.ViewModels
         private void Previous()
         {
             _navigation.PreviousPage();
+            _ev.GetEvent<PageLoad>().Publish(_navigation.CurrentPage);
             CanNext = _navigation.CanNext;
             CanPrevious = _navigation.CanPrevious;
         }

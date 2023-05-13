@@ -8,7 +8,7 @@
         xmlns:prism="http://prismlibrary.com/"
         xmlns:core1="clr-namespace:Prisma.Core;assembly=Prisma.Core"
         mc:Ignorable="d"
-        Title="Проект по C#" Height="900" Width="1600">
+        Title="{Binding Title}" Height="900" Width="1600">
     <Window.Background>
         <ImageBrush ImageSource="/Images/back.png"/>
     </Window.Background>

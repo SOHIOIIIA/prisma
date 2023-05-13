@@ -15,7 +15,7 @@ namespace Prism.Shell
     {
         protected override void RegisterTypes(IContainerRegistry containerRegistry)
         {
-
+            containerRegistry.RegisterForNavigation<MainWindow, MainViewModel>();
         }
 
         protected override Window CreateShell() => Container.Resolve<MainWindow>();
