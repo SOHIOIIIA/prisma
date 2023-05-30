@@ -23,12 +23,8 @@
     </Style>
 
     <Style TargetType="{x:Type DataGrid}" x:Key="DataGridStyle">
-
         <Setter Property="DataGrid.AutoGenerateColumns" Value="True" />
         <Setter Property="DataGrid.FontFamily" Value="Microsoft JhengHei Light" />
         <Setter Property="DataGrid.FontSize" Value="14" />
-
     </Style>
-
-
 </ResourceDictionary>

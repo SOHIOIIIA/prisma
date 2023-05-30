@@ -6,7 +6,6 @@
         xmlns:local="clr-namespace:Prism.Shell"
         xmlns:core="clr-namespace:Prisma.Core;assembly=Prisma.Core"
         xmlns:prism="http://prismlibrary.com/"
-        xmlns:core1="clr-namespace:Prisma.Core;assembly=Prisma.Core"
         mc:Ignorable="d"
         Title="{Binding Title}" Height="900" Width="1600">
     <Window.Background>
