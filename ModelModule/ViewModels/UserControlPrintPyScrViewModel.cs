@@ -11,6 +11,7 @@ using Prisma.Core.Abstractions;
 using Prism.Mvvm;
 using Prism.Commands;
 using System.Configuration;
+using System.Windows;
 
 namespace ModelModule.ViewModels
 {
@@ -35,6 +36,7 @@ namespace ModelModule.ViewModels
         {
             string filepath = _projectPage.PyScriptPath;
             if (filepath != "") ReadPythonFile(_projectPage.PyScriptPath);
+            else MessageBox.Show("Не выбран скрипт!");
         }
         private async void ReadPythonFile(string filepath)
         {
